@@ -4,7 +4,15 @@ import FakeBookings from "./data/fakeBookings.json";
 import SearchResults from "./components/SearchResults.jsx";
 
 const Bookings = () => {
-  const [data, setData] = useState(FakeBookings);
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    fetch(`https://cyf-react.glitch.me`)
+      .then(res => res.json())
+      .then(data => setData(data));
+
+    console.log(data, "This is useEffect hook");
+  }, []);
 
   function handleDelete(qqqq) {
     /*here in parameter we need to have access to the movie object/item  in array that is going to be deleted
